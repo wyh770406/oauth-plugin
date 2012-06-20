@@ -5,7 +5,7 @@ module OAuth
     module ProviderController
       def self.included(controller)
         controller.class_eval do
-          before_filter :authenticated_user!, :only => [:authorize,:revoke]
+          before_filter :authenticate_user!, :only => [:authorize,:revoke]
           oauthenticate :only => [:test_request]
           oauthenticate :strategies => :token, :interactive => false, :only => [:invalidate,:capabilities]
           oauthenticate :strategies => :two_legged, :interactive => false, :only => [:request_token]
